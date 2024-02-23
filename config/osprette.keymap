@@ -1,5 +1,10 @@
-/* source keypos definitions */
+// Copyright (c) 2022 The ZMK Contributors
+// SPDX-License-Identifier: MIT
+
 #include "../zmk-nodefree-config/keypos_def/keypos_34keys_osprette.h"
+
+/* don't use 5-column layout to emulate sweep */
+/ { chosen { zmk,matrix_transform = &default_transform; }; };
 
 /* source the main keymap */
 #include "base.keymap"
