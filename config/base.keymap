@@ -1,15 +1,15 @@
+// Copyright (c) 2022 The ZMK Contributors
+// SPDX-License-Identifier: MIT
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 
 #include "../zmk-nodefree-config/helper.h"
 
-#define L_BASE 0
-#define L_NUMS 1
-#define L_SYMS 2
-
-//#include "combos.dtsi"  // requires layer aliases
-//#include "mouse.dtsi"
 #include "extra_keys.h"
+
+#define ___ &trans
+#define XXX &none
 
 #define XXX &none
 #define ___ &trans
@@ -40,12 +40,12 @@ ZMK_COMBO(c_rsuper, &kp RGUI, RM1 RM2, ALL, COMBO_JOINTLY_MS)
 ZMK_COMBO(c_launcher, &kp LG(LS(SPACE)), LM2 LM1 RM1 RM2, ALL, COMBO_JOINTLY_MS)
 ZMK_COMBO(c_esc, &kp ESC, LT3 LT2, ALL, COMBO_JOINTLY_MS)
 ZMK_COMBO(c_grv, &kp GRAVE, LT3 LT2 LT0, ALL, COMBO_JOINTLY_MS)
-ZMK_COMBO(c_tab, &kp TAB, LM5 LM4, ALL, COMBO_JOINTLY_MS)
-ZMK_COMBO(c_ins, &kp INS, LM5 LM4 LB4, ALL, COMBO_JOINTLY_MS)
+ZMK_COMBO(c_tab, &kp TAB, LT4 LM4, ALL, COMBO_JOINTLY_MS)
+ZMK_COMBO(c_ins, &kp INS, LT4 LM4 LB4, ALL, COMBO_JOINTLY_MS)
 ZMK_COMBO(c_mins, &kp MINUS, RM3 RM4, ALL, COMBO_JOINTLY_MS)
-ZMK_COMBO(c_ent, &kp ENTER, RM4 19, ALL, COMBO_JOINTLY_MS) // RM5 busted. Patch to 19
+ZMK_COMBO(c_ent, &kp ENTER, RM4 RT4, ALL, COMBO_JOINTLY_MS)
 ZMK_COMBO(c_slsh, &kp SLASH, RB3 RB4, ALL, COMBO_JOINTLY_MS)
-ZMK_COMBO(c_pipe, &kp BACKSLASH, RM4 19 RB4, ALL, COMBO_JOINTLY_MS) // RM5 busted. Patch to 19
+ZMK_COMBO(c_pipe, &kp BACKSLASH, RM4 RT4 RB4, ALL, COMBO_JOINTLY_MS)
 ZMK_COMBO(c_plus, &kp PLUS, LB0 LB2 LB3, ALL, COMBO_JOINTLY_MS)
 ZMK_COMBO(c_eql, &kp EQUAL, RB0 RB2 RB3, ALL, COMBO_JOINTLY_MS)
 ZMK_COMBO(c_lprn, &kp LPAR, LT0 LT1, ALL, COMBO_JOINTLY_MS)
@@ -64,7 +64,7 @@ ZMK_COMBO(c_end, &kp END, RM2 RM3, ALL, COMBO_JOINTLY_MS)
 ZMK_COMBO(c_pgdn, &kp PG_DN, RB1 RB2, ALL, COMBO_JOINTLY_MS)
 ZMK_COMBO(c_supup, &kp LG(UP), LT3 LT2 LT1, ALL, COMBO_JOINTLY_MS)
 ZMK_COMBO(c_supleft, &kp LG(LEFT), LM3 LM2 LM1, ALL, COMBO_JOINTLY_MS)
-ZMK_COMBO(c_supright, &kp LG(RIGHT), LM2 LM1 LM0, ALL, COMBO_JOINTLY_MS) // Was LMB0. Assumed LM0
+ZMK_COMBO(c_supright, &kp LG(RIGHT), LM2 LM1 LM0, ALL, COMBO_JOINTLY_MS)
 ZMK_COMBO(c_supdn, &kp LG(DOWN), LB3 LB2 LB1, ALL, COMBO_JOINTLY_MS)
 ZMK_COMBO(c_mfa, &kp LG(O), LT2 LT1 LT0, ALL, COMBO_JOINTLY_MS)
 ZMK_COMBO(c_pwd, &kp LG(LC(O)), RT0 RT1 RT2, ALL, COMBO_JOINTLY_MS)
@@ -77,27 +77,27 @@ ZMK_COMBO(c_volmute, &kp K_MUTE, LB2 LB1 LB0 RB0 RB1 RB2, ALL, COMBO_JOINTLY_MS)
 // misc aliases
 #define C_S_SPACE &kp LC(LS(SPACE))
 #define A_S_SPACE &kp LA(LS(SPACE))
-#define NUMS_SPACE &lt L_NUMS SPACE
+#define NUMS_SPACE &lt 1 SPACE
 
 /* Keymap */
 
 ZMK_LAYER(base,
-//                             ╭─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────╮
-                                 &kp COMMA     &kp DOT       &kp P         &kp Y           &kp F         &kp G         &kp C         &kp R
-// ╭─────────────┬─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┬─────────────╮
-     &kp SQT       &kp A         &kp O         &kp E         &kp U         &kp I           &kp D         &kp H         &kp T         &kp N         &kp S         &kp L
-// ╰─────────────├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤─────────────╯
-                   &kp SEMICOLON &kp Q         &kp J         &kp K         &kp X           &kp B         &kp M         &kp W         &kp V         &kp Z
-//               ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     &kp SQT       &kp COMMA     &kp DOT       &kp P         &kp Y           &kp F         &kp G         &kp C         &kp R         &kp L
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     &kp A         &kp O         &kp E         &kp U         &kp I           &kp D         &kp H         &kp T         &kp N         &kp S
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     &kp SEMICOLON &kp Q         &kp J         &kp K         &kp X           &kp B         &kp M         &kp W         &kp V         &kp Z
+// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
                                                              &kp LCTL      &kp LSHFT       NUMS_SPACE    &kp RALT
 //                                                         ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯
 )
 
 ZMK_LAYER(nums,
 //                             ╭─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────╮
-                                 &kp F7        &kp F8        &kp F9        &kp F12         XXX           &kp 7         &kp 8         &kp 9
+                   XXX           &kp F7        &kp F8        &kp F9        &kp F12         XXX           &kp 7         &kp 8         &kp 9         &kp PLUS
 // ╭─────────────┬─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┬─────────────╮
-     XXX           XXX           &kp F4        &kp F5        &kp F6        &kp F11         XXX           &kp 4         &kp 5         &kp 6         &kp DOT       &kp PLUS
+                   XXX           &kp F4        &kp F5        &kp F6        &kp F11         XXX           &kp 4         &kp 5         &kp 6         &kp DOT
 // ╰─────────────├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤─────────────╯
                    XXX           &kp F1        &kp F2        &kp F3        &kp F10         XXX           &kp 1         &kp 2         &kp 3         &kp 0
 //               ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
@@ -107,9 +107,9 @@ ZMK_LAYER(nums,
 
 ZMK_LAYER(syms,
 //                             ╭─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────╮
-                                 &kp EXCL      &kp AT        &kp POUND     &kp DLLR        &kp PRCNT     &kp CARET     &kp AMPS      &kp STAR
+                   &kp K_PP      &kp EXCL      &kp AT        &kp POUND     &kp DLLR        &kp PRCNT     &kp CARET     &kp AMPS      &kp STAR      XXX
 // ╭─────────────┬─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┬─────────────╮
-     &kp K_PP      XXX           XXX           XXX           XXX           XXX             XXX           XXX           XXX           XXX           XXX           &kp K_NEXT
+                   XXX           XXX           XXX           XXX           XXX             XXX           XXX           XXX           XXX           XXX
 // ╰─────────────├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤─────────────╯
                    XXX           XXX           XXX           XXX           XXX             XXX           XXX           XXX           XXX           XXX
 //               ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
@@ -118,3 +118,4 @@ ZMK_LAYER(syms,
 )
 
 /* vim: set ft=c tw=174: */
+

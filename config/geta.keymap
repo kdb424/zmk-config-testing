@@ -3,8 +3,8 @@
 
 #include "../zmk-nodefree-config/keypos_def/keypos_34keys.h"
 
-/* use 5-column layout to emulate sweep */
-/ { chosen { zmk,matrix_transform = &sweep_transform; }; };
+/* activate bluetooth */
+#define CONFIG_WIRELESS 1
 
 /* source the main keymap */
 #include "base.keymap"
